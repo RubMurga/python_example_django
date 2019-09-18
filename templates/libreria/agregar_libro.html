@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+    Libreria
+{% endblock %}
+{% block actual %}
+    <li><a href=""> Libreria- Agregar libro </a> </li>
+{% endblock %}
+{% block sidebar %}
+{% include 'menu.html' with page="libreria_agregar_libro" belongs_to=usuario.belongs_to%}
+{% endblock %}
+
+{% block body_block %}
+    <img src="{% static 'images/logobiblioteca.png' %}" style="position: absolute; height: 250px; width: 250px; right: -3%; bottom: 0%;">
+
+    <div class="row" ng-app = "BLibreria">
+    <div class="col-md-offset-4 col-md-4 col-sm-12 col-xs-12 col-lg-4 col-lg-offset-4" ng-controller="LibreriaCtrl">
+    <form action="{% url 'libreria_agregar_articulo' %}" enctype="multipart/form-data" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="articuloform" value="0">
+        {% for field in articulo_form %}
+            <div class="form-group">
+                {{ field.label_tag }}{{ field }}
+                <div class="alert-danger">
+                    <h4>
+                    {{ field.errors }}
+                        </h4>
+                </div>
+            </div>
+        {% endfor %}
+    <center>
+    <input type="submit" value="Agregar Libro" class="btn btn-primary">
+        </center>
+    </form>
+    <hr><hr>
+    <form method="POST" action="{% url 'libreria_agregar_libro' %}" id = "formularioproducto">
+    {% csrf_token %}
+            <input type="hidden" name="productoForm" value="1">
+        {% for field in libro_form %}
+            <div class="form-group">
+            {{ field.label_tag }}{{ field }}
+                <div class="alert-danger">
+                    <h4>
+            {{ field.errors }}
+                        </h4>
+                </div>
+            </div>
+        {% endfor %}
+    <center>
+    <input type="submit" id="botonenviar" value="Agregar Libro" class="btn btn-primary">
+        </center>
+    </form>
+    </div>
+    <div id = "divvalidador" class="hide">
+    {{ validador }}
+    </div>
+    </div>
+    <script src="{% static 'js/angular/angular.min.js' %}"></script>
+    <script src="{% static 'js/angular/busqueda_productos.js' %}"></script>
+
+{% endblock %}

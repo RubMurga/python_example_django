@@ -1,0 +1,139 @@
+<div>
+    <ul class="nav nav-sidebar">
+        
+        {%if belongs_to == 'Administrador' or belongs_to == 'Libreria' %}
+        <li class="active"><a href="" style="background-color: grey; cursor: default;"> Libreria</a></li>
+        {% endif %}
+        {%if belongs_to == 'Administrador' or belongs_to == 'Libreria' %}
+        <li {% if page == "control_inicio" %} class = "active" {% endif %}>  <a href="{% url 'control_inicio' %}"> Inicio</a> </li>
+        {% endif %}
+        {%if belongs_to == 'Administrador' or belongs_to == 'Libreria' %}
+        <li {% if page == "libreria_ventas_dia" %} class = "active" {% endif %} > <a href="{% url 'libreria_ventas_dia' %}"> Ventas de hoy </a> </li>
+        {% endif %}
+        {%if belongs_to == 'Administrador' or belongs_to == 'Libreria' %}
+        <li {% if page == "libreria_ventas_semana" %} class = "active" {% endif %} > <a href="{% url 'libreria_ventas_semana' %}"> Ventas de esta semana</a> </li>
+        {% endif %}
+        {%if belongs_to == 'Administrador' or belongs_to == 'Libreria' %}
+        <li {% if page == "libreria_ventas_mes" %} class = "active" {% endif %}> <a href="{% url 'libreria_ventas_mes' %}"> Ventas del mes </a> </li>
+        {% endif %}
+        {%if belongs_to == 'Administrador' or belongs_to == 'Libreria' %}
+        <li {% if page == "libreria_libros_registrados" %} class = "active" {% endif %}> <a href="{% url 'libreria_libros_registrados' %}"> Libros registrados </a> </li>
+        {% endif %}
+        {%if belongs_to == 'Administrador' or belongs_to == 'Libreria' %}
+        <li {% if page == "libreria_agregar_libro" %} class = "active" {% endif %}><a href="{% url 'libreria_agregar_libro' %}"> Agregar Libros </a> </li>
+        {% endif %}
+        {%if belongs_to == 'Administrador' or belongs_to == 'Libreria' %}
+        <li {% if page == "libreria_agregar_categoria" %} class = "active" {% endif %}><a href="{% url 'libreria_agregar_categoria' %}"> Agregar Categorias</a> </li>
+        {% endif %}
+        {%if belongs_to == 'Administrador' or belongs_to == 'Libreria' %}
+        <li {% if page == "libreria_actualizar_inventario" %} class = "active" {% endif %}><a href="{% url 'libreria_actualizar_inventario' %}"> Actualizar inventario</a> </li>
+        {% endif %}
+        {%if belongs_to == 'Administrador' or belongs_to == 'Libreria' %}
+        <li {% if page == "libreria_cambio_precio" %} class = "active" {% endif %}><a href="{% url 'libreria_cambio_precio' %}"> Cambiar precio de libros</a> </li>
+        {% endif %}
+        {%if belongs_to == 'Administrador' or belongs_to == 'Libreria' %}
+        <li {% if page == "libreria_borrar_libros" %} class = "active" {% endif %}><a href="{% url 'libreria_borrar_libros' %}">Borrar libros</a> </li>
+        {% endif %}
+        {%if belongs_to == 'Administrador' or belongs_to == 'Libreria' %}
+        <li {% if page == "libreria_registradora" %} class = "active" {% endif %}><a href="{% url 'libreria_registradora' %}"> Caja Registradora </a> </li>
+        {% endif %}
+        {%if belongs_to == 'Administrador' or belongs_to == 'Libreria' %}
+        <input type="text" class="form-control" placeholder="Buscar libro por nombre" id="buscarLibro">
+        {% endif %}
+        {%if belongs_to == 'Administrador' or belongs_to == 'Libreria' %}
+        <input type="text" class="form-control" placeholder="Buscar libro por código de barras" id="buscarLibrocb">
+        {% endif %}
+        {%if belongs_to == 'Administrador' or belongs_to == 'Libreria' %}
+        <input type="text" class="form-control" placeholder="Buscar Categoria" id="buscarCategoria">
+        {% endif %}
+        {%if belongs_to == 'Administrador' or belongs_to == 'Libreria' %}
+        <li class="active"><a href="" style="background-color: grey; cursor: default;"> Comercializadora</a></li>
+        {% endif %}
+        {%if belongs_to == 'Administrador' or belongs_to == 'Libreria' and usuario.sucursal == 0%}
+        <li {% if page == "comercializadora_ventas_dia" %} class = "active" {% endif %} ><a href="{% url 'comercializadora_ventas_dia' %}"> Ventas de hoy </a> </li>
+        {% endif %}
+        {%if belongs_to == 'Administrador' or belongs_to == 'Libreria' and usuario.sucursal == 0%}
+        <li {% if page == "comercializadora_ventas_semana" %} class = "active" {% endif %} ><a href="{% url 'comercializadora_ventas_semana' %}"> Ventas de esta semana</a> </li>
+        {% endif %}
+        {%if belongs_to == 'Administrador' or belongs_to == 'Libreria' and usuario.sucursal == 0 %}
+        <li {% if page == "comercializadora_ventas_mes" %} class = "active" {% endif %}><a href="{% url 'comercializadora_ventas_mes' %}"> Ventas del mes </a> </li>
+        {% endif %}
+        {%if belongs_to == 'Administrador' or belongs_to == 'Libreria' and usuario.sucursal == 0%}
+        <li {% if page == "comercializadora_ventas_mes_spec" %} class = "active" {% endif %}><a href="{% url 'comercializadora_ventas_mes_spec' %}"> Ventas por mes específico <br> <button class="btn btn-warning" style="font-size:0.8em">¡Nuevo!</button> </a> </li>
+        {% endif %}
+        {%if belongs_to == 'Administrador' or belongs_to == 'Libreria' and usuario.sucursal == 0%}
+        <li {% if page == "comercializadora_libros_registrados" %} class = "active" {% endif %}><a href="{% url 'comercializadora_libros_registrados' %}"> Productos registrados </a> </li>
+        {% endif %}
+        {%if belongs_to == 'Administrador' or belongs_to == 'Libreria' and usuario.sucursal == 0%}
+        <li {% if page == "comercializadora_agregar" %} class = "active" {% endif %}> <a href="{% url 'comercializadora_agregar' %}"> Agregar Producto </a> </li>
+        {% endif %}
+        {%if belongs_to == 'Administrador' or belongs_to == 'Libreria' and usuario.sucursal == 0%}
+        <li {% if page == "comercializadora_agregar_categoria" %} class = "active" {% endif %}><a href="{% url 'comercializadora_agregar_categoria' %}"> Agregar Categorias</a> </li>
+        {% endif %}
+        {%if belongs_to == 'Administrador' or belongs_to == 'Libreria'  and usuario.sucursal == 0%}
+        <li {% if page == "comercializadora_cambio_precio" %} class = "active" {% endif %}><a href="{% url 'comercializadora_cambio_precio' %}"> Cambiar Precio De Productos</a> </li>
+        {% endif %}
+        {%if belongs_to == 'Administrador' or belongs_to == 'Libreria' and usuario.sucursal == 0%}
+        <li {% if page == "comercializadora_actualizar_inventario" %} class = "active" {% endif %}><a href="{% url 'comercializadora_actualizar_inventario' %}"> Actualizar inventario</a> </li>
+        {% endif %}
+        {%if belongs_to == 'Administrador' or belongs_to == 'Libreria' and usuario.sucursal == 0%}
+        <li {% if page == "comercializadora_borrar_producto" %} class = "active" {% endif %}> <a href="{% url 'comercializadora_borrar_producto' %}">Borrar Producto</a> </li>
+        {% endif %}
+        {%if belongs_to == 'Administrador' or belongs_to == 'Libreria' and usuario.sucursal == 0%}
+        <li {% if page == "comercializadora_registradora" %} class = "active" {% endif %}><a href="{% url 'comercializadora_registradora' %}"> Caja Registradora </a> </li>
+        {% endif %}
+        {%if belongs_to == 'Administrador' or belongs_to == 'Libreria' and usuario.sucursal == 0%}
+        <input type="text" class="form-control" placeholder="Buscar Producto por nombre" id="buscarProducto">
+        {% endif %}
+        {%if belongs_to == 'Administrador' or belongs_to == 'Libreria' and usuario.sucursal == 0%}
+        <input type="text" class="form-control" placeholder="Buscar Producto por código de barras" id="buscarProductocb">
+        {% endif %}
+        {%if belongs_to == 'Administrador' or belongs_to == 'Libreria' and usuario.sucursal == 0 %}
+        <input type="text" class="form-control" placeholder="Buscar Categoria" id="buscarCategoriaC">
+        {% endif %}
+        {%if belongs_to == 'Administrador' or belongs_to == 'Libreria' or belongs_to == 'Cafeteria' %}
+        <li class="active"> <a href="" style="background-color: grey; cursor: default;"> Cafeteria</a></li>
+        {% endif %}
+        {%if belongs_to == 'Administrador' or belongs_to == 'Libreria' %}
+        <li {% if page == "cafeteria_ventas_dia" %} class = "active" {% endif %} ><a href="{% url 'cafeteria_ventas_dia' %}"> Ventas hoy </a> </li>
+        {% endif %}
+        {%if belongs_to == 'Administrador' or belongs_to == 'Libreria' %}
+        <li {% if page == "cafeteria_ventas_semana" %} class = "active" {% endif %}><a href="{% url 'cafeteria_ventas_semana' %}"> Ventas en la semana</a> </li>
+        {% endif %}
+        {%if belongs_to == 'Administrador' or belongs_to == 'Libreria'%}
+        <li {% if page == "cafeteria_ventas_mes" %} class = "active" {% endif %}><a href="{% url 'cafeteria_ventas_mes' %}"> Ventas en el mes</a> </li>
+        {% endif %}
+        {%if belongs_to == 'Administrador' or belongs_to == 'Libreria' %}
+        <li {% if page == "cafeteria_productos_registrados" %} class = "active" {% endif %}><a href="{% url 'cafeteria_productos_registrados' %}"> Productos registrados </a> </li>
+        {% endif %}
+        {%if belongs_to == 'Administrador' or belongs_to == 'Libreria' %}
+        <li {% if page == "cafeteria_agregar_producto" %} class = "active" {% endif %}><a href="{% url 'cafeteria_agregar_producto' %}"> Agregar productos </a> </li>
+        {% endif %}
+        {%if belongs_to == 'Administrador' or belongs_to == 'Libreria' %}
+        <li {% if page == "cafeteria_cambiar_precio_producto" %} class = "active" {% endif %}><a href="{% url 'cafeteria_cambiar_precio_producto' %}">Cambiar precio de productos</a> </li>
+        {% endif %}
+        {%if belongs_to == 'Administrador' or belongs_to == 'Libreria'%}
+        <li {% if page == "cafeteria_actualizar_inventario" %} class = "active" {% endif %}><a href="{% url 'cafeteria_actualizar_inventario' %}"> Actualizar inventario</a> </li>
+        {% endif %}
+        {%if belongs_to == 'Administrador' or belongs_to == 'Libreria' %}
+        <li {% if page == "cafeteria_borrar_producto" %} class = "active" {% endif %}><a href="{% url 'cafeteria_borrar_producto' %}"> Borrar producto</a> </li>
+        {% endif %}
+        {%if belongs_to == 'Cafeteria' %}
+        <li {% if page == "cafeteria_inicio" %} class = "active" {% endif %}><a href="{% url 'cafeteria_inicio' %}"> Inicio</a> </li>
+        {% endif %}
+
+        {%if belongs_to == 'Administrador' or belongs_to == 'Libreria' or belongs_to == 'Cafeteria' %}
+        <li {% if page == "cafeteria_registradora" %} class = "active" {% endif %}><a href="{% url 'cafeteria_registradora' %}"> Caja Registradora </a> </li>
+        {% endif %}
+        {%if belongs_to == 'Administrador' or belongs_to == 'Libreria'%}
+        <input type="text" class="form-control" placeholder="Buscar producto por nombre" id = "inputProducto">
+        {% endif %}
+        {%if belongs_to == 'Administrador' or belongs_to == 'Libreria' %}
+        <input type="text" class="form-control" placeholder="Buscar producto por código de barras" id="inputProductocb">
+        {% endif %}
+        
+        
+        <li class="active"> <a href="" style="background-color: grey; cursor: default;"> Usuario</a></li>
+        <li class="active"><a href="{% url 'cerrar_sesion' %}" style="background-color: darkred"> Cerrar sesión </a> </li>
+    </ul>
+</div>

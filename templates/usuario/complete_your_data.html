@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block sidebar %}
+    <h2>Ya casi terminamos. </h2> <h3>Solamente faltan unos pequeños ajustes a tu perfil.</h3>
+            <h1 style="font-size: 80px;">(:</h1>
+{% endblock %}
+
+{% block body_block %}
+    <div class="row">
+    <div class="col-md-offset-4 col-md-4 col-sm-offset-3 col-sm-10 col-xs-offset-3 col-xs-12 col-lg-4 col-lg-offset-5" style="position: inherit; top:0%;">
+        <img src="{% static 'images/caset.png' %}">
+    </div>
+    </div>
+    <div class="row">
+    <div class="col-md-offset-4 col-md-4 col-sm-12 col-xs-12 col-lg-4 col-lg-offset-4">
+    <form method="post" enctype="multipart/form-data" action="." role="form">
+    {% csrf_token %}
+    {% for field in user_form %}
+        <div class="form-group">
+         {{ field }}
+            <div class="alert-danger">
+                <h4>
+        {{ field.errors }}
+                    </h4>
+            </div>
+          </div>
+
+    {% endfor %}
+    {% for field in profile_form %}
+        <div class="form-group">
+        {{ field.label_tag }}{{ field }}
+        {{ field.errors }}
+        </div>
+    {% endfor %}
+    <center>
+    <input type="submit" value="Terminar registro!" class="btn btn-primary">
+    </center>
+    </form>
+    </div>
+    </div>
+{% endblock %}

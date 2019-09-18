@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load staticfiles %}
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>{% block title %}Página principal{% endblock %}</title>
+    <link rel="icon" href="{% static 'images/Logo_Web.ico' %}">
+
+    <!--<link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">-->
+      <link href="{% static 'css/bootstrap/bootstrap.min.css'%}" rel = "stylesheet">
+      <link href="{% static 'css/bootstrap/dashboard.css'%}" rel="stylesheet">
+    <link href="{% static 'js/toastr-master/toastr.css' %}" rel="stylesheet">
+  <link href="{% static 'css/cajaRegistradora/cajaRegistradora.css' %}" rel="stylesheet">
+    <!--[if lt IE 9]>
+      <script src="{% static 'js//bootstrap/html5shiv.min.js'%}"></script>
+      <script src="{% static 'js/bootstrap/respond.min.js'%}"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="http://www.ciex.edu.mx/"><img src="{% static 'images/Logo_Web.png' %}" style="height: 50px; position: absolute; top: 0%;"></a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+                    {% if user.is_authenticated %}
+                        {% block actual %} {% endblock %}
+                        <li><a href=""> <img src="{% static 'images/user.png' %}" style="height: 20px; width: 20px;"> {{user.username}}</a> </li>
+                        <li><a href="{% url 'registro_ayuda' %}"> <img src="{% static 'images/acerca.png' %}" style="height: 20px; width: 20px;"> Ayuda</a></li>
+                        
+              {% endif %}
+              </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+            {% block sidebar %}
+
+            {% endblock %}
+            <div id="resultbusqueda">
+
+            </div>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" style="z-index: 2;">
+                {% block body_block %}{% endblock %}
+        </div>
+      </div>
+    </div>
+    <div class="hide" id = "alert"></div>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>-->
+    <script src="{% static 'js/bootstrap/jquery.min.js'%}"></script>
+    <script src="{% static 'js/bootstrap/bootstrap.min.js'%}"></script>
+    <script src="{% static 'js/bootstrap/bootstrap-filestyle.js' %}"></script>
+    <script src="{% static 'js/toastr-master/toastr.js' %}"></script>
+    <script src="{% static 'js/toastr-master/alertas.js' %}"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  </body>
+</html>

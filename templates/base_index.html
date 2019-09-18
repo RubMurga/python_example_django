@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <!-- bootstrap -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="{% static 'images/Logo_Web.ico' %}">
+    <link href="{% static 'css/bootstrap/bootstrap.min.css'%}" rel = "stylesheet">
+    <link href="{% static 'css/bootstrap/dashboard.css'%}" rel="stylesheet">
+
+    <!-- cambiar fondos  -->
+        <link rel="stylesheet" type="text/css" href="{% static 'css/index/fondo.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'css/index/style3.css' %}" />
+
+        <link rel="stylesheet" type="text/css" href="{% static 'js/toastr-master/toastr.css' %}">
+
+    <meta charset="UTF-8">
+    <title>{% block title%} {% endblock %}</title>
+</head>
+<body id="page">
+        {% block body_block %}{% endblock %}
+
+</body>
+    <!-- bootstrap js -->
+    <script src="{% static 'js/bootstrap/jquery.min.js'%}"></script>
+    <script src="{% static 'js/bootstrap/bootstrap.min.js'%}"></script>
+
+
+<!-- cambiar fondos -->
+<script type="text/javascript" src="{% static 'js/angular/angular.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/toastr-master/toastr.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/angular/registro_usuario.js' %}"></script>
+
+</html>

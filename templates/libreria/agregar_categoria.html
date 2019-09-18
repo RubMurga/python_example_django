@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+    Libreria
+{% endblock %}
+{% block actual %}
+    <li><a href=""> Libreria-Agregar Categoria</a> </li>
+{% endblock %}
+{% block sidebar %}
+{% include 'menu.html' with page="libreria_agregar_categoria" belongs_to=usuario.belongs_to%}
+{% endblock %}
+
+{% block body_block %}
+    <img src="{% static 'images/logobiblioteca.png' %}" style="position: absolute; height: 250px; width: 250px; right: -3%; bottom: -340%;">
+    <div class="row" ng-app = "LCategoria">
+    <div class="col-md-offset-4 col-md-4 col-sm-12 col-xs-12 col-lg-4 col-lg-offset-4" ng-controller="CategoriaCtrl">
+    <form method="POST" action="." id = "formularioproducto">
+    {% csrf_token %}
+        {% for field in categoria_form %}
+            <div class="form-group">
+            {{ field.label_tag }}{{ field }}
+               <div class="alert-danger">
+                <h4>
+                {{ field.errors }}</h4>
+                </div>
+            </div>
+        {% endfor %}
+    <center>
+    <input type="submit" id="botonenviar" value="Agregar libro" class="btn btn-primary">
+        </center>
+    </form>
+    </div>
+    <div id = "divvalidador" class="hide">
+    {{ validador }}
+    </div>
+    </div>
+    <script src="{% static 'js/angular/angular.min.js' %}"></script>
+    <script src="{% static 'js/angular/busqueda_productos.js' %}"></script>
+{% endblock %}

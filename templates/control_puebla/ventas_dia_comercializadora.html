@@ -1,0 +1,118 @@
+{% extends 'base_control_puebla.html' %}
+{% load staticfiles %}
+
+{% block sidebar %}
+
+    <div>
+    <ul class="nav nav-sidebar">
+        <li class="active"><a href="" style="background-color: grey; cursor: default;"> Libreria</a></li>
+        <li><a href="{% url 'control_puebla_inicio' %}"> Inicio</a> </li>
+        <li><a href="{% url 'libreria_puebla_ventas_dia' %}"> Ventas de hoy </a> </li>
+        <li><a href="{% url 'libreria_puebla_ventas_semana' %}"> Ventas de esta semana</a> </li>
+        <li><a href="{% url 'libreria_puebla_ventas_mes' %}"> Ventas del mes </a> </li>
+        <li><a href="{% url 'libreria_puebla_libros_registrados' %}"> Libros registrados </a> </li>
+        
+        <li><a href="{% url 'libreria_puebla_agregar_libro' %}"> Agregar Libros </a> </li>
+        <li><a href="{% url 'libreria_puebla_agregar_categoria' %}"> Agregar Categorias</a> </li>
+        <li><a href="{% url 'libreria_puebla_cambio_precio' %}"> Cambiar precio de libros</a> </li>
+        <li><a href="{% url 'libreria_puebla_borrar_libros' %}">Borrar libros</a> </li>
+        <li><a href="{% url 'libreria_puebla_registradora' %}"> Caja Registradora </a> </li>
+        <input type="text" class="form-control" placeholder="Buscar libro por nombre" id="buscarLibro">
+        <input type="text" class="form-control" placeholder="Buscar libro por código de barras" id="buscarLibrocb">
+        <input type="text" class="form-control" placeholder="Buscar Categoria" id="buscarCategoria">
+
+        <!--
+        <li class="active"><a href="" style="background-color: grey; cursor: default;"> Comercializadora</a></li>
+        <li  class="active"><a href="{% url 'comercializadora_ventas_dia' %}"> Ventas de hoy </a> </li>
+        <li><a href="{% url 'comercializadora_ventas_semana' %}"> Ventas de esta semana</a> </li>
+        <li><a href="{% url 'comercializadora_ventas_mes' %}"> Ventas del mes </a> </li>
+        <li><a href="{% url 'comercializadora_libros_registrados' %}"> Productos registrados </a> </li>
+
+        <li><a href="{% url 'comercializadora_agregar' %}"> Agregar Producto </a> </li>
+        <li><a href="{% url 'comercializadora_agregar_categoria' %}"> Agregar Categorias</a> </li>
+        <li><a href="{% url 'comercializadora_cambio_precio' %}"> Cambiar Precio De Productos</a> </li>
+        <li><a href="{% url 'comercializadora_borrar_producto' %}">Borrar Producto</a> </li>
+        <li><a href="{% url 'comercializadora_registradora' %}"> Caja Registradora </a> </li>
+        <input type="text" class="form-control" placeholder="Buscar Producto por nombre" id="buscarProducto">
+        <input type="text" class="form-control" placeholder="Buscar Producto por código de barras" id="buscarProductocb">
+        <input type="text" class="form-control" placeholder="Buscar Categoria" id="buscarCategoriaC">
+         -->
+
+        <li class="active"> <a href="" style="background-color: grey; cursor: default;"> Cafeteria</a></li>
+        <li><a href="{% url 'cafeteria_puebla_ventas_dia' %}"> Ventas hoy </a> </li>
+        <li><a href="{% url 'cafeteria_puebla_ventas_semana' %}"> Ventas en la semana</a> </li>
+        <li><a href="{% url 'cafeteria_puebla_ventas_mes' %}"> Ventas en el mes</a> </li>
+        <li><a href="{% url 'cafeteria_puebla_productos_registrados' %}"> Productos registrados </a> </li>
+        <li><a href="{% url 'cafeteria_puebla_agregar_producto' %}"> Agregar productos </a> </li>
+        <li><a href="{% url 'cafeteria_puebla_cambiar_precio_producto' %}">Cambiar precio de productos</a> </li>
+        <li><a href="{% url 'cafeteria_puebla_borrar_producto' %}"> Borrar producto</a> </li>
+        <li><a href="{% url 'cafeteria_puebla_registradora' %}"> Caja Registradora </a> </li>
+        <input type="text" class="form-control" placeholder="Buscar producto por nombre" id = "inputProducto">
+        <input type="text" class="form-control" placeholder="Buscar producto por código de barras" id="inputProductocb">
+
+
+            <li class="active"> <a href="" style="background-color: grey; cursor: default;"> Usuario</a></li>
+        <li class="active"><a href="{% url 'cerrar_sesion' %}" style="background-color: darkred"> Cerrar sesión </a> </li>
+    </ul>
+    </div>
+{% endblock %}
+
+{% block title %}
+    Control
+{% endblock %}
+
+{% block actual %}
+{% endblock %}
+
+
+
+
+
+
+
+{% block body_block %}
+    <div ng-controller="ventas_dia_comercializadora_ctrl">
+    <div class="col-md-10" ng-if="vendidos != 0">
+        <table class="table table-responsive" ng-if="verifica == 0">
+            <td class="alert-info">Nombre del Producto </td>
+                <td class="alert-info">Precio de venta</td>
+                <td class="alert-info">Precio de compra</td>
+            <td class="alert-info">Vendidos</td>
+
+            <tr ng-repeat="libro in libros">
+                <td class="alert-success" ng-show="libro.vendidos != 0">[[libro.nombre]]</td>
+                <td class="alert-success" ng-show="libro.vendidos != 0">$[[libro.precio]]</td>
+                <td class="alert-warning" ng-show="libro.vendidos != 0">$[[libro.costo]]</td>
+                <td class="alert-success" ng-show="libro.vendidos != 0">[[libro.vendidos]]</td>
+        </table>
+        <table class="table table-responsive" ng-if="verifica == 1">
+            </tr>
+                <td class="alert-info">Nombre del Producto </td>
+                <td class="alert-info">Precio de venta</td>
+                <td class="alert-info">Precio de compra</td>
+                <td class="alert-info">Vendido por</td>
+            <tr ng-repeat="libro in libros">
+                <td class="alert-success">[[libro.nombre]]</td>
+                <td class="alert-success">[[libro.precio]]</td>
+                <td class="alert-warning">[[libro.costo]]</td>
+                <td class="alert-success">[[libro.vendido_por]]</td>
+            </tr>
+        </table>
+    </div>
+    <div class="alert-danger col-md-10 col-lg-10 col-sm-10" ng-if="vendidos == 0">
+        <h1>No han hecho ventas.</h1>
+    </div>
+    <div class="col-xs-offset-10  col-xs-2 col-sm-2 col-sm-offset-10 col-md-2 col-lg-2 col-md-offset-10 col-lg-offset-10" style="position: absolute; left: 0%;">
+        {% for field in form_user %}
+        {{ field.label_tag }}{{ field }}
+    {% endfor %}
+    {% for field in libro_form %}
+    {{ field.label_tag }}{{ field }}
+    {% endfor %}
+    <br>
+    <button class="btn btn-primary" ng-click = "ventas_iniciales()">Todas las ventas</button>
+        <div class="alert-success"> <h5>Ventas: $[[ganancias]] <div>Productos vendidos:<span ng-if="verifica ==0"> [[vendidos]]</span><span ng-if="verifica ==1 ">[[valida]]</span></div></h5></div>
+
+    </div>
+    </div>
+{% endblock %}

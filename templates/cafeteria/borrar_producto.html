@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+    Libreria
+{% endblock %}
+{% block actual %}
+    <li><a href=""> Cafeteria- borrar producto </a> </li>
+{% endblock %}
+{% block sidebar %}
+{% include 'menu.html' with page="cafeteria_borrar_producto" belongs_to=usuario.belongs_to%}
+{% endblock %}
+
+{% block body_block %}
+    <img src="{% static  'images/logocafeteria.jpeg'%}" style="position: absolute; left: 60%;height: 250px;width: 400px; bottom: -140%;">
+
+    <div class="row" ng-app = "BLibreria">
+    <div class="col-md-offset-4 col-md-4 col-sm-12 col-xs-12 col-lg-4 col-lg-offset-4" ng-controller="LibreriaCtrl">
+    <hr><hr>
+    <form method="POST" action=".">
+    {% csrf_token %}
+            <input type="hidden" name="productoForm" value="1" >
+        {% for field in borrar_form %}
+            <div class="form-group">
+            {{ field.label_tag }}{{ field }}
+                <div class="alert-danger">
+                    <h4>
+            {{ field.errors }}
+                        </h4>
+                </div>
+            </div>
+        {% endfor %}
+    <center>
+    <input type="submit" id="botonenviar" value="borrar Libro" class="btn btn-primary">
+        <div class="alert-danger" style="border-radius: 10%;">
+    <h5>Sólo se borrarán los productos que no se hayan vendido</h5>
+    </div>
+        </center>
+    </form>
+    </div>
+    <div id = "divvalidador" class="hide">
+    {{ validador }}
+    </div>
+    </div>
+    <script src="{% static 'js/angular/angular.min.js' %}"></script>
+    <script src="{% static 'js/angular/busqueda_productos.js' %}"></script>
+
+{% endblock %}

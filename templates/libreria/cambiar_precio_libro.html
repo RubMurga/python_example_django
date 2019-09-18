@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+    Libreria
+{% endblock %}
+{% block actual %}
+    {% if libreria_val %}
+    <li><a href=""> Libreria- Modificar precio de Libro </a> </li>
+    {% else %}
+    <li><a href=""> Cafeteria- Modificar precio de producto </a> </li>
+    {% endif %}
+
+{% endblock %}
+{% block sidebar %}
+{% if libreria_val %}
+{% include 'menu.html' with page="libreria_cambio_precio" belongs_to=usuario.belongs_to%}
+{% else %}
+{% include 'menu.html' with page="cafeteria_cambiar_precio_producto" belongs_to=usuario.belongs_to%}
+{%endif%}
+{% endblock %}
+
+{% block body_block %}
+    {% if libreria_val %}
+    <img src="{% static 'images/logobiblioteca.png' %}" style="position: absolute; height: 250px; width: 250px; right: -3%; bottom: -80%;">
+    {% elif cafeteria_val %}
+        <img src="{% static  'images/logocafeteria.jpeg'%}" style="position: absolute; left: -20%; z-index: -1;">
+
+    {% endif %}
+
+    <div class="row">
+    <div class="col-md-offset-4 col-md-4 col-sm-12 col-xs-12 col-lg-4 col-lg-offset-4" ng-app = "BLibreria">
+    </form>
+    <hr><hr>
+    <form method="POST" action=".">
+    {% csrf_token %}
+        {% for field in precio_form %}
+            <div class="form-group">
+            {{ field.label_tag }}{{ field }}
+                <div class="alert-danger">
+                    <h4>
+            {{ field.errors }}
+                        </h4>
+                </div>
+            </div>
+        {% endfor %}
+    <center>
+    <input type="submit" id="botonenviar" value="Actualizar precio" class="btn btn-primary">
+        </center>
+    </form>
+    <hr><hr>
+    </div>
+    <div id = "divvalidador" class="hide">
+    {{ validador }}
+    </div>
+    </div>
+            <script src="{% static 'js/angular/angular.min.js' %}"></script>
+    <script src="{% static 'js/angular/busqueda_productos.js' %}"></script>
+
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'base_index.html' %}
+{% load staticfiles %}
+{% block title %} {{ mensaje }}  {% endblock %}
+
+{% block body_block %}
+    <ul class="cb-slideshow">
+            <li><span></span>
+            <li><span></span>
+            <li><span></span>
+            <li><span></span>
+            <li><span></span>
+            <li><span></span>
+    </ul>
+    <div class="row" style="width: 50%;">
+    <div class="col-md-12 col-sm-12 invisible" style="margin-top: 30%;">
+    </div>
+    </div>
+    <div class="row">
+        <div class="col-md-offset-4 col-sm-offset-0 col-sm-4 col-md-4  " style="border-radius:3%">
+            <div class="{{ clase }}" style="height: 200px;width: 400px; text-align: center; top:100px; border-radius: 5%;">
+        <div style="text-height: 100px;">{{ mensaje }}</div>
+                <img src="{% static 'images/'%}{{ imagen }}" style="margin: 5%;">
+        </div>
+
+        </div>
+    </div>
+    <div class="row">
+    <div class="col-md-12 col-sm-12 col-sm-offset-0 col-xs-offset-0 col-xs-12" style="bottom: 0%; position: absolute; text-align: center;">
+            <img src="{% static 'images/Logo_Web.png' %}" style="width: 100px; height: 100px;">
+        </div>
+    </div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0" style="bottom: 0%; position: absolute; text-align:center; color:darkgrey">Todos los derechos reservados.
+            </div>
+            </div>
+{% endblock %}

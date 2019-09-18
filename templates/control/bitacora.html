@@ -1,0 +1,41 @@
+{% extends 'base_control.html' %}
+{% load staticfiles %}
+
+{% block sidebar %}
+{% include 'menu.html' belongs_to=usuario.belongs_to%}
+{% endblock %}
+
+{% block title %}
+    Control
+{% endblock %}
+
+{% block actual %}
+{% endblock %}
+
+{% block body_block %}
+    <div ng-controller="bitacora_ctrl">
+    <div class="col-md-10" ng-if="valida != 0">
+        <table class="table table-responsive">
+            <td class="alert-info">Nombre del artículo </td>
+                <td class="alert-info">Precio de venta</td>
+                <td class="alert-info">Precio de compra</td>
+                 <td class="alert-info">Borrado el día</td>
+                <td class="alert-info">Borrado de</td>
+                <td class="alert-info">Elementos borrados</td>
+            <tr ng-repeat="libro in libros">
+                <td class="alert-success">[[libro.nombre]]</td>
+                <td class="alert-success">$[[libro.precio]]</td>
+                <td class="alert-warning">$[[libro.costo]]</td>
+                <td class="alert-success">[[libro.fecha]]</td>
+                <td class="alert-danger">[[libro.origen]]</td>
+                <td class="alert-danger">[[libro.numero]]</td>
+
+            </tr>
+
+        </table>
+    </div>
+    <div class="alert-danger col-md-10 col-lg-10 col-sm-10" ng-show="valida">
+        <h1>Sin movimientos.</h1>
+    </div>
+    </div>
+{% endblock %}

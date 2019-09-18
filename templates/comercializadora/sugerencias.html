@@ -1,0 +1,28 @@
+{% if sugerencias_categorias%}
+    <ul class="nav nav-sidebar">
+    {% for categoria in sugerencias_categorias %}
+        <h3>
+        <li>
+        <a href="{% url 'comercializadora_categoria' categoria.slug %}">
+            {{ categoria.nombre_categoria }}
+        </a>
+        </li>
+
+        </h3>
+    {% endfor %}
+    </ul>
+{% endif %}
+
+{% if sugerencias_productos%}
+    <ul class="nav nav-sidebar">
+    {% for producto in sugerencias_productos %}
+        <h3>
+        <li>
+        <a href="{% url 'comercializadora_producto' producto.slug %}">
+            {{ producto.nombre }}
+        </a>
+        </li>
+        </h3>
+    {% endfor %}
+    </ul>
+{% endif %}

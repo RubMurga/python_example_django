@@ -1,0 +1,60 @@
+{% extends 'base_control.html' %}
+{% load staticfiles %}
+
+{% block sidebar %}
+{% include 'menu.html' with page="libreria_actualizar_inventario" belongs_to=usuario.belongs_to%}
+{% endblock %}
+
+{% block title %}
+    Control
+{% endblock %}
+
+{% block actual %}
+{% endblock %}
+
+{% block body_block %}
+    <div ng-controller="actualizar_inventario_ctrl">
+    <div class="row" >
+        <div class="col-md-offset-4 col-md-4">
+            <form>
+            <input type="text" name="nombreProducto" class="form-control" placeholder="Introduce el nombre del articulo." ng-model="busquedaAngular" ng-change="busqueda()">
+                <br/>
+                <ul ng-repeat="libro in libros track by $index">
+                <li ng-if = "$index < 10"> <a href="#" ng-click="buscar_especifico([[libro.id]], libro.nombre)"> [[libro.nombre]]  </a> </li>
+            </ul>
+            </form>
+        </div>
+
+        <div class="col-md-4" ng-show = 'mostrar' ng-if="numero > 0">
+            <h5 class="alert alert-success"> Existen <b>[[numero]]</b> articulo(s) registrados en el sistema del producto <b>[[nombre_seleccionado]] </b>. </h5>
+        </div>
+    </div>
+
+    <div class="row" ng-show="mostrar" style="padding-top: 50px;">
+        <div class="col-md-offset-4 col-md-4">
+            <form>
+            <input type="text" name="nombreProducto" class="form-control" placeholder="Introduce el nombre del articulo." ng-model="contador.numero" >
+                <br/>
+                <h4> Introduce el número actual de productos disponibles en el inventario.</h4>
+                <center>
+                <button class="btn btn-success" ng-click="actualizar_existencias()"> Actualizar existencias</button>
+                    </center>
+            </form>
+        </div>
+
+    </div>
+
+    <div class="row" ng-show="mostrar" style="padding-top: 50px;" ng-if="numero == 0">
+        <div class="col-md-offset-4 col-md-4">
+            <div class="alert alert-warning" role="alert">
+                No puedes actualizar las unidades de este producto ya que no tiene unidades registradas.
+                <br>
+                <br>
+                Intenta agregar unidades primero dando click <a href="{% url 'libreria_agregar_libro' %}"> aquí.</a>
+              </div>
+        </div>
+    </div>
+    </div>
+
+{% endblock %}
+

@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}
+    Comercializadora
+{% endblock %}
+
+{% block sidebar %}
+{% include 'menu.html' with page="comercializadora_registradora" belongs_to=usuario.belongs_to%}
+{% endblock %}
+
+{% block actual %}
+    <li>
+    <a href="">
+        Comercializadora-Caja registradora
+        </a>
+    </li>
+{% endblock %}
+
+{% block body_block %}
+        <img src="{% static 'images/logobiblioteca.png' %}" style="position: absolute; height: 250px; width: 250px; right: -3%; bottom: -110%;">
+
+    <div  ng-app="CRegistradora">
+    <div class="col-sm-12 col-xs-12 col-md-3 col-md-offset-3 col-lg-6 col-lg-offset-3" ng-controller="TodoCtrl">
+        <h3 style="color: black; margin: 5px; border-radius: 5px;" class="alert-info">Productos a vender: [[getTotalProductos()]]</h3>
+        <h4 style="text-align: right">Total a pagar: $[[getPagar()]]</h4>
+        <h4 style="text-align: right" id="idcambio">Dinero a regresar: $[[getCambio()]]</h4>
+
+        <table class="table table-bordered">
+            <tr class="alert-info">
+                <td>Producto</td>
+                <td>Precio</td>
+            </tr>
+
+            <tr ng-repeat="producto in productos">
+                <td ng-if="producto.cancelado==false" class="alert-success">[[producto.nombre]] </td>
+                <td ng-if="producto.cancelado==false" class="alert-success"> $[[producto.precio]] </td>
+                <td ng-if="producto.cancelado==false" class="alert-warning"> <input type="checkbox" ng-model="producto.cancelado">Cancelar producto</td>
+
+                <td ng-if="producto.cancelado==true" class="alert-danger">[[producto.nombre]] </td>
+                <td ng-if="producto.cancelado==true" class="alert-danger"> $[[producto.precio]] </td>
+                <td ng-if="producto.cancelado==true" class="alert-warning"> <input type="checkbox" ng-model="producto.cancelado">Agregar producto </td>
+
+            </tr>
+        </table>
+        <form ng-submit = "agregarProducto()">
+    <div class="input-group">
+            <span class="input-group-addon">Codigo de barras</span>
+        <input type="text" class="form-control" placeholder="00000000000" autofocus ng-model="productoInput" id="productoIn" autocomplete="off">
+        <!-- document.getElementById("id_del_input").focus(); -->
+    </div>
+        </form>
+    <div class="input-group">
+            <span class="input-group-addon">Dinero recibido </span>
+        <input type="text" class="form-control" placeholder="$ 0.0" ng-model="dineroInput"  autocomplete="off">
+        <!-- document.getElementById("id_del_input").focus(); -->
+        </div>
+        <center><button class="btn btn-primary" ng-click = "mandarVenta()">Confimar compra </button></center>
+
+
+        <div id="Imprime" style="visibility: hidden;">
+        <img src="{% static 'images/logobiblioteca.png' %}" style="width: 50px; height: 50px;"><br>
+            -----------------------------------------------------------
+    <table>
+    <tr ng-repeat="producto in productos">
+                <td>[[producto.nombre]] </td>
+                <td>.....$[[producto.precio]] </td>
+                <td ng-if="producto.cancelado==true">(No concretada)</td>
+
+    </tr>
+    </table>
+    -----------------------------------------------------------
+        <br>venta: $[[getPagar()]]<br>
+        Venta hecha el: [[dia]]-[[mes]]-[[anio]] a las: [[hora]]:[[minutos]]<br>
+        Gracias por tu compra (:
+
+  <br>
+    </div>
+
+    </div>
+    </div>
+
+    <script src="{% static 'js/angular/angular.min.js' %}"></script>
+    <script src="{% static 'js/angular/caja_comercializadora.js' %}"></script>
+
+{% endblock %}

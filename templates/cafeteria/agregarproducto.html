@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+    Cafeteria
+{% endblock %}
+{% block actual %}
+    <li><a href=""> Cafeteria- Agregar producto </a></li>
+{% endblock %}
+{% block sidebar %}
+{% include 'menu.html' with page="cafeteria_agregar_producto" belongs_to=usuario.belongs_to%}
+{% endblock %}
+{% block body_block %}
+    <img src="{% static  'images/logocafeteria.jpeg'%}" style="position: absolute; left: 60%;height: 250px;width: 400px; bottom: 4%;">
+    <div class="row" ng-app = "ACafeteria">
+    <div class="col-md-offset-4 col-md-4 col-sm-12 col-xs-12 col-lg-4 col-lg-offset-4" ng-controller="CafeteriaCtrl">
+    <form method="post" action="{% url 'cafeteria_agregar_articulo' %}">
+        {% csrf_token %}
+        {% for field in articulo_form %}
+             <div class="form-group">
+            {{ field.label_tag }}{{ field }}
+                <div class="alert-danger">
+                <h4>
+                {{ field.errors }}</h4>
+                </div>
+            </div>
+        {% endfor %}
+        <input type="submit" id="botonenviar" value="Agregar producto" class="btn btn-primary">
+
+    </form>
+    <hr><hr>
+    <form method="POST" action="{% url 'cafeteria_agregar_producto' %}" id = "formularioproducto">
+    {% csrf_token %}
+        {% for field in agregar_form %}
+            <div class="form-group">
+            {{ field.label_tag }}{{ field }}
+                <div class="alert-danger">
+                <h4>
+                {{ field.errors }}</h4>
+                </div>
+            </div>
+        {% endfor %}
+
+    <input type="submit" id="botonenviar" value="Agregar producto" class="btn btn-primary">
+    </form>
+    </div>
+    <div id = "divvalidador" class="hide">
+    {{ validador }}
+    </div>
+    </div>
+    <script src="{% static 'js/angular/angular.min.js' %}"></script>
+    <script src="{% static 'js/angular/busqueda_productos.js' %}"></script>
+{% endblock %}

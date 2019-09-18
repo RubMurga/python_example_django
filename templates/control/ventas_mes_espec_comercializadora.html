@@ -1,0 +1,50 @@
+{% extends 'base_control.html' %}
+{% load staticfiles %}
+
+{% block sidebar %}
+{% include 'menu.html' with page="comercializadora_ventas_mes_spec" belongs_to=usuario.belongs_to %}
+{% endblock %}
+
+{% block title %}
+    Control
+{% endblock %}
+
+{% block actual %}
+{% endblock %}
+
+{% block body_block %}
+    <div ng-controller="ventas_mes_spec_comercializadora_ctrl">
+    <div class="col-md-10" ng-if="valida != 0">
+        <table class="table table-responsive" >
+            </tr>
+                <td class="alert-info">Nombre del Producto </td>
+                <td class="alert-info">Precio de venta</td>
+                <td class="alert-info">Precio de compra</td>
+                <td class="alert-info">Vendido por</td>
+                <td class="alert-info">Vendido el dia</td>
+            <tr ng-repeat="libro in libros">
+                <td class="alert-success">[[libro.nombre]]</td>
+                <td class="alert-success">[[libro.precio]]</td>
+                <td class="alert-warning">[[libro.costo]]</td>
+                <td class="alert-success">[[libro.vendido_por]]</td>
+                <td class="alert-success">[[libro.vendido_el_dia]]</td>
+            </tr>
+        </table>
+    </div>
+    <div class="alert-danger col-md-10 col-lg-10 col-sm-10" ng-if="valida == 0">
+        <h1>Cero ventas.</h1>
+    </div>
+    <div class="col-xs-offset-10  col-xs-2 col-sm-2 col-sm-offset-10 col-md-2 col-lg-2 col-md-offset-10 col-lg-offset-10" style="position: absolute; left: 0%;">
+        {% for field in year_form %}
+        {{ field.label_tag }}{{ field }}
+        {% endfor %}
+
+        {% for field in month_form %}
+        {{ field.label_tag }}{{ field }}
+        {% endfor %}
+    <br>
+    <button class="btn btn-primary" ng-click = "buscar()">Buscar</button>
+    <div class="alert-success"> <h5>Ventas: $[[ganancias]] <div>Productos vendidos:<span ng-if="verifica ==0"> [[vendidos]]</span><span ng-if="verifica ==1 ">[[valida]]</span></div></h5></div>
+    </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,10 @@
+bcrypt
+dj-database-url==0.4.1
+Django==1.8
+django-registration-redux==1.2
+gunicorn==19.4.5
+Pillow
+pycparser==2.14
+six==1.9.0
+whitenoise==3.2.1
+mysqlclient

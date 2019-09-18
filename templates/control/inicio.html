@@ -1,0 +1,184 @@
+{% extends 'base_control.html' %}
+{% load staticfiles %}
+
+{% block sidebar %}
+    {% include 'menu.html' with page="control_inicio" belongs_to=usuario.belongs_to %}
+{% endblock %}
+
+{% block title %}
+    Control
+{% endblock %}
+
+{% block actual %}
+
+{% endblock %}
+
+{% block body_block %}
+    <div class="col-xs-12 col-xs-12 col-md-offset-2 col-md-8 col-lg-8 col-lg-offset-2">
+    <center>
+        <a href="{% url 'bitacora_eliminados' %}"><button class="btn btn-success"> Bitácora de movimientos en el inventario</button> </a>
+    </center>
+        <br/>
+
+    <center>
+        <img src="https://mir-s3-cdn-cf.behance.net/project_modules/disp/fb895727075137.5635f8ee187e2.gif" alt="">
+        <br>
+        <h1>Está página está siendo optimizada.</h1>
+    </center>
+    <!--
+        <table class="table table-responsive">
+            <tr>
+        <th class="alert-warning" colspan="2"> Ventas hoy. </th>
+    </tr>
+        <tr>
+        <td class="alert-info"> Ventas libreria</td>
+            {% if ventas_hoy_libreria != 0 %}
+        <td class="alert-success"> {{ ventas_hoy_libreria }} </td>
+                {% else %}
+                <td class="alert-danger"> No ha habido ventas hoy. </td>
+            {% endif %}
+    </tr>
+        <tr>
+            <td class="alert-info"> Ventas Comercializadora</td>
+            {% if ventas_hoy_comercializadora != 0 %}
+        <td class="alert-success"> {{ ventas_hoy_comercializadora }} </td>
+                {% else %}
+                <td class="alert-danger"> No ha habido ventas hoy. </td>
+            {% endif %}
+        </tr>
+        <tr>
+            <td class="alert-info">
+                Ventas cafeteria
+            </td>
+            {% if ventas_hoy_cafeteria != 0 %}
+                <td class="alert-success"> {{ ventas_hoy_cafeteria }}</td>
+            {% else %}
+                <td class="alert-danger"> No ha habido ventas hoy. </td>
+            {% endif %}
+
+        </tr>
+        -->
+        <!--
+    <tr>
+        <th class="alert-warning" colspan="2">
+            Ventas en la semana.
+        </th>
+    </tr>
+    <tr>
+        <td class="alert-info">Ventas libreria</td>
+        {% if ventas_semana_libreria != 0 %}
+            <td class="alert-success"> {{ ventas_semana_libreria }}</td>
+        {% else %}
+            <td class="alert-danger"> No ha habido ventas en la semana.</td>
+        {% endif %}
+    </tr>
+        <tr>
+        <td class="alert-info">Ventas Comercializadora</td>
+        {% if ventas_semana_comercializadora != 0 %}
+            <td class="alert-success"> {{ ventas_semana_comercializadora }}</td>
+        {% else %}
+            <td class="alert-danger"> No ha habido ventas en la semana.</td>
+        {% endif %}
+    </tr>
+    <tr>
+        <td class="alert-info">Ventas cafeteria</td>
+        {% if ventas_semana_cafeteria  != 0%}
+            <td class="alert-success">{{ ventas_semana_cafeteria }}</td>
+        {% else %}
+            <td class="alert-danger"> No ha habido ventas en la semana.</td>
+        {% endif %}
+    </tr>
+    <tr>
+        <th class="alert-warning" colspan="2">Ventas en el mes.</th>
+    </tr>
+    <tr>
+        <td class="alert-info"> Ventas libreria</td>
+        {% if  ventas_mes_libreria != 0 %}
+            <td class="alert-success"> {{ ventas_mes_libreria }}</td>
+        {% else %}
+            <td class="alert-danger"> No ha habido ventas en este mes.</td>
+        {% endif %}
+    </tr>
+        <tr>
+        <td class="alert-info"> Ventas Comercializadora</td>
+        {% if  ventas_mes_comercializadora != 0 %}
+            <td class="alert-success"> {{ ventas_mes_comercializadora}}</td>
+        {% else %}
+            <td class="alert-danger"> No ha habido ventas en este mes.</td>
+        {% endif %}
+    </tr>
+    <tr>
+        <td class="alert-info">Ventas cafeteria</td>
+        {% if ventas_mes_cafeteria != 0 %}
+            <td class="alert-success"> {{ ventas_mes_cafeteria }}</td>
+        {% else %}
+            <td class="alert-danger">No ha habido ventas este mes. </td>
+        {% endif %}
+    </tr>
+    << VENDORES
+        <tr>
+            <th class="alert-warning" colspan="2">
+                Número de ventas por vendedor hoy.
+            </th>
+        </tr>
+        <tr ng-repeat="venta in ventas_vendedores">
+            <td class="alert-info">
+                [[venta.nombre]]
+            </td>
+            <td ng-if="venta.belongs_to == 'Cafeteria' && venta.ventas_cafeteria_dia != 0" class="alert-success">
+               [[venta.ventas_cafeteria_dia]]
+            </td>
+            <td ng-if="venta.belongs_to == 'Cafeteria' && venta.ventas_cafeteria_dia == 0" class="alert-danger">
+                No ha hecho ventas hoy.
+            </td>
+            <td ng-if="venta.belongs_to == 'Libreria'" class="alert-success">
+                Libreria:[[venta.ventas_libreria_dia]] <br>Cafeteria: [[venta.ventas_cafeteria_dia]] <br>Comercializadora:[[venta.ventas_comercializadora_dia]]
+            </td>
+
+            <td ng-if="venta.belongs_to == 'Administrador'" class="alert-success">
+                Libreria:[[venta.ventas_libreria_dia]] <br>Cafeteria: [[venta.ventas_cafeteria_dia]] <br>Comercializadora:[[venta.ventas_comercializadora_dia]]
+            </td>
+        </tr>
+         <tr>
+            <th class="alert-warning" colspan="2"> Ventas por vendedor en la semana. </th>
+        </tr>
+        <tr ng-repeat="venta in ventas_vendedores" >
+            <td class="alert-info"> [[venta.nombre]]</td>
+            <td ng-if="venta.belongs_to == 'Cafeteria' && venta.ventas_cafeteria_semana != 0" class="alert-success">
+               [[venta.ventas_cafeteria_semana]]
+            </td>
+            <td ng-if="venta.belongs_to == 'Cafeteria' && venta.ventas_cafeteria_semana == 0" class="alert-danger">
+                No ha hecho ventas en la semana.
+            </td>
+            <td ng-if="venta.belongs_to == 'Libreria'" class="alert-success">
+                Libreria:[[venta.ventas_libreria_semana]] Cafeteria: [[venta.ventas_cafeteria_semana]] Comercializadora:[[venta.ventas_comercializadora_semana]]
+            </td>
+            <td ng-if="venta.belongs_to == 'Administrador'" class="alert-success">
+                Libreria:[[venta.ventas_libreria_semana]] <br>Cafeteria: [[venta.ventas_cafeteria_semana]] <br>Comercializadora:[[venta.ventas_comercializadora_semana]]
+
+            </td>
+        </tr>
+
+        <tr>
+            <th class="alert-warning" colspan="2"> Ventas por vendedor en el mes. </th>
+        </tr>
+        <tr ng-repeat="venta in ventas_vendedores" >
+            <td class="alert-info"> [[venta.nombre]]</td>
+            <td ng-if="venta.belongs_to == 'Cafeteria' && venta.ventas_cafeteria_mes != 0" class="alert-success">
+               [[venta.ventas_cafeteria_mes]]
+            </td>
+            <td ng-if="venta.belongs_to == 'Cafeteria' && venta.ventas_cafeteria_mes == 0" class="alert-danger">
+                No ha hecho ventas en el mes.
+            </td>
+            <td ng-if="venta.belongs_to == 'Libreria'" class="alert-success">
+                Libreria:[[venta.ventas_libreria_semana]] <br>Cafeteria: [[venta.ventas_cafeteria_semana]] <br>Comercializadora:[[venta.ventas_comercializadora_semana]]
+            </td>
+            <td ng-if="venta.belongs_to == 'Administrador'" class="alert-success">
+                Libreria:[[venta.ventas_libreria_mes]] <br>Cafeteria: [[venta.ventas_cafeteria_mes]] <br>Comercializadora:[[venta.ventas_comercializadora_mes]]
+            </td>
+        </tr>
+        -->
+
+    </table>
+</div>
+{% endblock %}

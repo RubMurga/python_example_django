@@ -1,0 +1,59 @@
+{% extends 'base_control.html' %}
+{% load staticfiles %}
+
+{% block sidebar %}
+{% include 'menu.html' with page="cafeteria_productos_registrados" belongs_to=usuario.belongs_to%}
+
+{% endblock %}
+
+{% block title %}
+    Control
+{% endblock %}
+
+{% block actual %}
+{% endblock %}
+
+{% block body_block %}
+    <div ng-controller="productos_registrados_ctrl">
+    <div class="col-md-10" ng-if="valida != 0">
+        <table class="table table-responsive">
+            <td class="alert-info">Nombre del producto </td>
+                <td class="alert-info">Precio de venta</td>
+                <td class="alert-info">Precio de compra</td>
+                <td class="alert-info">Unidades vendidas</td>
+                <td class="alert-info">Unidades restantes</td>
+            
+            <tr ng-if="loading">
+                <td colspan="5" align="center">
+                    <img src="{% static 'images/loading.gif' %}" style="height:10%; width: 10%;">
+                </td>
+            </tr>
+            
+            <tr ng-if = "!loading" ng-repeat="producto in productos">
+                <td class="alert-success">[[producto.nombre]]</td>
+                <td class="alert-success">$[[producto.precio]]</td>
+                <td class="alert-warning">$[[producto.costo]]</td>
+                <td class="alert-success">[[producto.vendidos]]</td>
+                <td class="alert-danger">[[producto.no_vendidos]]</td>
+
+            </tr>
+
+        </table>
+    </div>
+    <div class="alert-danger col-md-10 col-lg-10 col-sm-10" ng-if="valida == 0">
+        <h1>Ningún producto registrado.</h1>
+    </div>
+    <div class="col-xs-offset-10  col-xs-2 col-sm-2 col-sm-offset-10 col-md-2 col-lg-2 col-md-offset-10 col-lg-offset-10" style="position: absolute; left: 0%;">
+        {% for field in form_user %}
+        {{ field.label_tag }}{{ field }}
+    {% endfor %}
+    {% for field in cafeteria_form %}
+    {{ field.label_tag }}{{ field }}
+    {% endfor %}
+    <br>
+    <button class="btn btn-primary" ng-click = "ventas_iniciales()">Todas las ventas</button>
+        <div ng-if = "inversion >= ganancias" class="alert-danger"> <h5>Ventas: $[[ganancias]]<br><br> Inversion: $[[inversion]]<br><br> Productos vendidos: [[vendidos]]<br><br>Restantes por vender: [[restantes]]<br><br> Ganancias: $[[resta]]</h5></div>
+        <div ng-if=" inversion < ganancias" class="alert-success"> <h5>Ventas: $[[ganancias]]<br><br> Inversion: $[[inversion]]<br><br> Productos vendidos: [[vendidos]] <br><br>Restantes por vender: [[restantes]]<br><br> Ganancias: $[[resta]]</h5></div>
+    </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block sidebar %}
+    <ul class="nav nav-sidebar">
+
+                        <li class="active"> <a href="" style="background-color: grey; cursor: default;"> Cafeteria</a></li>
+
+            <li class="active"><a href="{% url 'cafeteria_puebla_inicio' %}"> Inicio</a> </li>
+        <li><a href="{% url 'cafeteria_puebla_registradora' %}"> Caja Registradora </a> </li>
+
+                    <li class="active"> <a href="" style="background-color: grey; cursor: default;"> Usuario</a></li>
+        <li class="active"><a href="{% url 'cerrar_sesion' %}" style="background-color: darkred"> Cerrar sesión </a> </li>
+    </ul>
+{% endblock %}
+
+{% block body_block %}
+    <img src="{% static  'images/logocafeteria.jpeg'%}" style="position: absolute; left: 60%;height: 250px;width: 400px; bottom: -70%;">
+    <div class="row"><div class="col-sm-12 col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4 col-xs-12"><h1 style="color:steelblue">Hola, {{ user.username }}.</h1>
+    </div>
+    </div>
+    <div class="row">
+    <div class="col-sm-12 col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4 col-xs-12">
+        {% if profileuser.picture %}
+        <img src="/media/{{ profileuser.picture }}" style="height: 300px; width: 300px%; border-radius: 150%">
+        {% else %}
+            <img src="{% static 'images/nodisponible.jpg' %}" style="height: 300px; width: 300px%; border-radius: 150%">
+
+        {% endif %}
+    </div>
+    </div>
+
+{% endblock %}

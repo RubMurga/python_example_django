@@ -1,0 +1,153 @@
+{% extends 'base_control.html' %}
+{% load staticfiles %}
+
+{% block sidebar %}
+{% include 'menu.html' with page="libreria_ventas_semana" belongs_to=usuario.belongs_to%}
+{% endblock %}
+
+{% block title %}
+    Control
+{% endblock %}
+
+{% block actual %}
+{% endblock %}
+
+{% block body_block %}
+    <div ng-controller="ventas_semana_libreria_ctrl">
+    <div class="col-md-10" ng-if="valida != 0">
+        <table class="table table-responsive">
+            <tr>
+                <th class="alert-info" colspan="5" style="cursor: pointer;" ng-click = "muestra_lunes()"> Lunes. <span style="text-align: right; position: absolute; right: 5%;" >Número de ventas: [[num_l]] ventas: $[[ventas_l]]</span></th>
+            </tr>
+            <tr ng-show="lunes">
+                <td class="alert-warning">Nombre del producto </td>
+                <td class="alert-warning">Precio de venta</td>
+                <td class="alert-warning">Precio de compra</td>
+                <td class="alert-warning">Vendidos</td>
+                <td class="alert-warning">Código de barras</td>
+            </tr>
+            <tr ng-repeat="libro in libros" ng-show="lunes">
+                <td class="alert-success" ng-show="libro.dia == 'lunes'">[[libro.nombre]]</td>
+                <td class="alert-success" ng-show="libro.dia == 'lunes'">[[libro.precio]]</td>
+                <td class="alert-danger" ng-show="libro.dia == 'lunes'">[[libro.costo]]</td>
+                <td class="alert-success" ng-show="libro.dia == 'lunes'">[[libro.vendidos]]</td>
+                <td class="alert-success" ng-show="libro.dia == 'lunes'">[[libro.codigo_barras]]</td>
+            </tr>
+            <tr>
+                <th class="alert-info" colspan="5" style="cursor: pointer;" ng-click = "muestra_martes()"> Martes.<span style="text-align: right; position: absolute; right: 5%;" >Número de ventas: [[num_m]] ventas: $[[ventas_m]]</span></th>
+            </tr>
+            <tr ng-show="martes">
+                <td class="alert-warning">Nombre del producto </td>
+                <td class="alert-warning">Precio de venta</td>
+                <td class="alert-warning">Precio de compra</td>
+                <td class="alert-warning">Vendidos</td>
+                <td class="alert-warning">Código de barras</td>
+            </tr>
+            <tr ng-show="martes" ng-repeat="libro in libros">
+                <td class="alert-success" ng-show="libro.dia == 'martes'">[[libro.nombre]]</td>
+                <td class="alert-success" ng-show="libro.dia == 'martes'">[[libro.precio]]</td>
+                <td class="alert-danger" ng-show="libro.dia == 'martes'">[[libro.costo]]</td>
+                <td class="alert-success" ng-show="libro.dia == 'martes'">[[libro.vendidos]]</td>
+                <td class="alert-success" ng-show="libro.dia == 'martes'">[[libro.codigo_barras]]</td>
+            </tr>
+            <tr>
+                <th class="alert-info" colspan="5" style="cursor: pointer;" ng-click = "muestra_miercoles()"> Miercóles <span style="text-align: right; position: absolute; right: 5%;" >Número de ventas: [[num_mi]] ventas: $[[ventas_mi]]</span> </th>
+            </tr>
+            <tr ng-show="miercoles">
+                <td class="alert-warning">Nombre del producto </td>
+                <td class="alert-warning">Precio de venta</td>
+                <td class="alert-warning">Precio de compra</td>
+                <td class="alert-warning">Vendidos</td>
+                <td class="alert-warning">Código de barras</td>
+            </tr>
+            <tr ng-show="miercoles" ng-repeat="libro in libros">
+                <td class="alert-success" ng-show="libro.dia == 'miercoles'">[[libro.nombre]]</td>
+                <td class="alert-success" ng-show="libro.dia == 'miercoles'">[[libro.precio]]</td>
+                <td class="alert-danger" ng-show="libro.dia == 'miercoles'">[[libro.costo]]</td>
+                <td class="alert-success" ng-show="libro.dia == 'miercoles'">[[libro.vendidos]]</td>
+                <td class="alert-success" ng-show="libro.dia == 'miercoles'">[[libro.codigo_barras]]</td>
+            </tr>
+            <tr>
+                <th class="alert-info" colspan="5" style="cursor: pointer;" ng-click = "muestra_jueves()"> Jueves <span style="text-align: right; position: absolute; right: 5%;" >Número de ventas: [[num_ju]] ventas: $[[ventas_ju]]</span></th>
+            </tr>
+            <tr ng-show="jueves">
+                <td class="alert-warning">Nombre del producto </td>
+                <td class="alert-warning">Precio de venta</td>
+                <td class="alert-warning">Precio de compra</td>
+                <td class="alert-warning">Vendidos</td>
+                <td class="alert-warning">Código de barras</td>
+            </tr>
+            <tr ng-show="jueves" ng-repeat="libro in libros">
+                <td class="alert-success" ng-show="libro.dia == 'jueves'">[[libro.nombre]]</td>
+                <td class="alert-success" ng-show="libro.dia == 'jueves'">[[libro.precio]]</td>
+                <td class="alert-danger" ng-show="libro.dia == 'jueves'">[[libro.costo]]</td>
+                <td class="alert-success" ng-show="libro.dia == 'jueves'">[[libro.vendidos]]</td>
+                <td class="alert-success" ng-show="libro.dia == 'jueves'">[[libro.codigo_barras]]</td>
+            </tr>
+            <tr>
+                <th class="alert-info" colspan="5" style="cursor: pointer;" ng-click = "muestra_viernes()"> Viernes.<span style="text-align: right; position: absolute; right: 5%;" >Número de ventas: [[num_vi]] ventas: $[[ventas_vi]]</span> </th>
+            </tr>
+            <tr ng-show="viernes">
+                <td class="alert-warning">Nombre del producto </td>
+                <td class="alert-warning">Precio de venta</td>
+                <td class="alert-warning">Precio de compra</td>
+                <td class="alert-warning">Vendidos</td>
+                <td class="alert-warning">Código de barras</td>
+            </tr>
+            <tr ng-show="viernes" ng-repeat="libro in libros">
+                <td class="alert-success" ng-show="libro.dia == 'viernes'">[[libro.nombre]]</td>
+                <td class="alert-success" ng-show="libro.dia == 'viernes'">[[libro.precio]]</td>
+                <td class="alert-danger" ng-show="libro.dia == 'viernes'">[[libro.costo]]</td>
+                <td class="alert-success" ng-show="libro.dia == 'viernes'">[[libro.vendidos]]</td>
+                <td class="alert-success" ng-show="libro.dia == 'viernes'">[[libro.codigo_barras]]</td>
+            </tr>
+            <tr>
+                <th class="alert-info" colspan="5" style="cursor: pointer;" ng-click = "muestra_sabado()"> Sábado.<span style="text-align: right; position: absolute; right: 5%;" >Número de ventas: [[num_sa]] ventas: $[[ventas_sa]]</span></th>
+            </tr>
+            <tr ng-show="sabado">
+                <td class="alert-warning">Nombre del producto </td>
+                <td class="alert-warning">Precio de venta</td>
+                <td class="alert-warning">Precio de compra</td>
+                <td class="alert-warning">Vendidos</td>
+                <td class="alert-warning">Código de barras</td>
+            </tr>
+            <tr ng-show="sabado" ng-repeat="libro in libros">
+                <td class="alert-success" ng-show="libro.dia == 'sabado'">[[libro.nombre]]</td>
+                <td class="alert-success" ng-show="libro.dia == 'sabado'">[[libro.precio]]</td>
+                <td class="alert-danger" ng-show="libro.dia == 'sabado'">[[libro.costo]]</td>
+                <td class="alert-success" ng-show="libro.dia == 'sabado'">[[libro.vendidos]]</td>
+                <td class="alert-success" ng-show="libro.dia == 'sabado'">[[libro.codigo_barras]]</td>
+            </tr>
+            <tr>
+                <th class="alert-info" colspan="5" style="cursor: pointer;" ng-click = "muestra_domingo()"> Domingo. <span style="text-align: right; position: absolute; right: 5%;" >Número de ventas: [[num_dom]] ventas: $[[ventas_dom]]</span></th>
+            </tr>
+            <tr ng-show="domingo">
+                <td class="alert-warning">Nombre del producto </td>
+                <td class="alert-warning">Precio de venta</td>
+                <td class="alert-warning">Precio de compra</td>
+                <td class="alert-warning">Vendidos</td>
+                <td class="alert-warning">Código de barras</td>
+            </tr>
+            <tr ng-show="domingo" ng-repeat="libro in libros">
+                <td class="alert-success" ng-show="libro.dia == 'domingo'">[[libro.nombre]]</td>
+                <td class="alert-success" ng-show="libro.dia == 'domingo'">[[libro.precio]]</td>
+                <td class="alert-danger" ng-show="libro.dia == 'domingo'">[[libro.costo]]</td>
+                <td class="alert-success" ng-show="libro.dia == 'domingo'">[[libro.vendidos]]</td>
+                <td class="alert-success" ng-show="libro.dia == 'domingo'">[[libro.codigo_barras]]</td>
+            </tr>
+        </table>
+    </div>
+    <div class="alert-danger col-md-10 col-lg-10 col-sm-10" ng-if="valida == 0">
+        <h1>Cero ventas.</h1>
+    </div>
+    <div class="col-xs-offset-10  col-xs-2 col-sm-2 col-sm-offset-10 col-md-2 col-lg-2 col-md-offset-10 col-lg-offset-10" style="position: absolute; left: 0%;">
+    {% for field in libro_form %}
+    {{ field.label_tag }}{{ field }}
+    {% endfor %}
+    <br>
+    <button class="btn btn-primary" ng-click = "ventas_iniciales()">Todas las ventas</button>
+                <div ng-if = "inversion >= ganancias" class="alert-danger"> <h5>Ventas: $[[ganancias]]<br><br> Inversion: $[[inversion]]<br><br> Libros vendidos: [[valida]]<br><br> Ganancias: $[[resta]]</h5></div>
+        <div ng-if=" inversion < ganancias" class="alert-success"> <h5>Ventas: $[[ganancias]]<br><br> Inversion: $[[inversion]]<br><br> Libros vendidos: [[valida]] <br><br> Ganancias: $[[resta]]</h5></div>
+    </div>
+    </div>
+{% endblock %}

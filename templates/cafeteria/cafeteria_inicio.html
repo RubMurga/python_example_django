@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block sidebar %}
+{% include 'menu.html' with page="cafeteria_inicio" belongs_to=usuario.belongs_to%}
+{% endblock %}
+
+{% block body_block %}
+    <img src="{% static  'images/logocafeteria.jpeg'%}" style="position: absolute; left: 60%;height: 250px;width: 400px; bottom: -70%;">
+    <div class="row"><div class="col-sm-12 col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4 col-xs-12"><h1 style="color:steelblue">Hola, {{ user.username }}.</h1>
+    </div>
+    </div>
+    <div class="row">
+    <div class="col-sm-12 col-md-4 col-md-offset-4 col-lg-4 col-lg-offset-4 col-xs-12">
+        {% if profileuser.picture %}
+        <img src="/media/{{ profileuser.picture }}" style="height: 300px; width: 300px%; border-radius: 150%">
+        {% else %}
+            <img src="{% static 'images/nodisponible.jpg' %}" style="height: 300px; width: 300px%; border-radius: 150%">
+
+        {% endif %}
+    </div>
+    </div>
+
+{% endblock %}

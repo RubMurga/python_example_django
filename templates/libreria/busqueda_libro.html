@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+    Libreria
+{% endblock %}
+
+{% block sidebar %}
+{% include 'menu.html' with belongs_to=usuario.belongs_to%}
+{% endblock %}
+
+{% block actual %}
+    <li>
+    <a href="">
+    {{ categoria.nombre_categoria }}
+        </a>
+    </li>
+{% endblock %}
+
+{% block body_block %}
+        <img src="{% static 'images/logobiblioteca.png' %}" style="position: absolute; height: 250px; width: 250px; right: -3%; bottom: -140%;">
+
+    {% if libros  %}
+        <div class="table-responsive" ng-app = "BLibreria">
+        <h2 style="color: #2F96B4;"> Productos asociados a {{ titulo.nombre }}
+            {% if titulo.imagen %}
+            <img src="/media/{{ titulo.imagen }}" style="height: 100px; width: 100px" class="img-responsive img-thumbnail">
+            {% else %}
+                <img src="{% static 'images/nodisponible.jpg' %}" style="height: 100px; width: 100px;" class="img-responsive img-thumbnail">
+                {% endif %}
+        </h2>
+        <table class="table">
+        <tr>
+            <td class="active">Nombre del libro </td>
+            <td class="active"> Precio </td>
+            <td class="active"> Costo </td>
+            <td class="active"> Unidades vendidas</td>
+            <td class="active"> Unidades restantes</td>
+            <td class="active">Código de barras </td>
+        </tr>
+        {% for libro in libros %}
+            <tr>
+           <td class="alert-success"> {{ libro.nombre }}</td>
+            <td class="alert-success">{{ libro.precio }}</td>
+            <td class="alert-danger">{{ libro.costo }}</td>
+            <td class="alert-success">{{ libro.vendidos }}</td>
+            <td class="alert-danger">{{ libro.no_vendidos }}</td>
+            <td class="alert-info"> {{ libro.codigo_barras }}</td>
+            </tr>
+        {% endfor %}
+        </table>
+        </div>
+        {% else %}
+        <div class="alert-warning col-md-offset-4 col-md-4 col-lg-4 col-lg-offset-4 col-sm-12 col-xs-12">
+            <h2>Ningún producto registrado a este libro. {{ categoria.nombre_categoria }}
+            </h2>
+        </div>
+    {% endif %}
+        <script src="{% static 'js/angular/angular.min.js' %}"></script>
+    <script src="{% static 'js/angular/busqueda_productos.js' %}"></script>
+{% endblock %}

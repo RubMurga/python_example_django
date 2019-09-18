@@ -1,0 +1,36 @@
+SELECT setval('libreria_id', (SELECT MAX(id) FROM libreria_producto)+1);
+
+
+SELECT setval('cafeteria_productos', (SELECT MAX(id) FROM tablename_id_seq)+1)
+SELECT setval('tablename_id_seq', (SELECT MAX(id) FROM cafeteria_productos)+1);
+
+
+SELECT setval('comercializadora_producto_comercializadora', (SELECT MAX(id) FROM tablename)+1)
+
+comercializadora_categoria_comercializadora
+comercializadora_producto_comercializadora
+comercializadora_articulo_comercializadora
+
+cafeteria_articulo
+cafeteria_productos
+
+libreria_articulo_id_seq
+
+SELECT setval('libreria_articulo_id_seq', (SELECT MAX(id) FROM libreria_producto)+1);
+
+SELECT setval('cafeteria_productos_id_seq', (SELECT MAX(id) FROM cafeteria_productos)+1);
+
+SELECT setval('comercializadora_producto_comercializadora_id_seq', (SELECT MAX(id) FROM comercializadora_producto_comercializadora)+1);
+
+SELECT setval('comercializadora_articulo_id_seq', (SELECT MAX(id) FROM comercializadora_articulo_comercializadora)+1);
+
+comercializadora_articulo_comercializadora
+
+comercializadora_articulo_id_seq
+
+comercializadora_categoria_comercializadora
+
+comercializadora_categoria_id_seq
+
+SELECT setval('comercializadora_categoria_id_seq', (SELECT MAX(id) FROM comercializadora_categoria_comercializadora)+1);
+

@@ -1,0 +1,60 @@
+{% extends 'base_control.html' %}
+{% load staticfiles %}
+
+{% block sidebar %}
+{% include 'menu.html' with page="cafeteria_ventas_dia" belongs_to=usuario.belongs_to %}
+{% endblock %}
+
+{% block title %}
+    Control
+{% endblock %}
+
+{% block actual %}
+{% endblock %}
+
+{% block body_block %}
+    <div ng-controller="ventas_dia_cafeteria_ctrl">
+    <div class="col-md-10" ng-if="vendidos != 0">
+        <table class="table table-responsive" ng-if="verifica == 0">
+            <td class="alert-info">Nombre del libro </td>
+                <td class="alert-info">Precio de venta</td>
+                <td class="alert-info">Precio de compra</td>
+            <td class="alert-info">Vendidos</td>
+
+            <tr ng-repeat="producto in productos">
+                <td class="alert-success" ng-show="producto.vendidos != 0">[[producto.nombre]]</td>
+                <td class="alert-success" ng-show="producto.vendidos != 0">$[[producto.precio]]</td>
+                <td class="alert-warning" ng-show="producto.vendidos != 0">$[[producto.costo]]</td>
+                <td class="alert-success" ng-show="producto.vendidos != 0">[[producto.vendidos]]</td>
+        </table>
+        <table class="table table-responsive" ng-if="verifica == 1">
+            </tr>
+                <td class="alert-info">Nombre del producto </td>
+                <td class="alert-info">Precio de venta</td>
+                <td class="alert-info">Precio de compra</td>
+                <td class="alert-info">Vendido por</td>
+            <tr ng-repeat="producto in productos">
+                <td class="alert-success">[[producto.nombre]]</td>
+                <td class="alert-success">[[producto.precio]]</td>
+                <td class="alert-warning">[[producto.costo]]</td>
+                <td class="alert-success">[[producto.vendido_por]]</td>
+            </tr>
+        </table>
+    </div>
+    <div class="alert-danger col-md-10 col-lg-10 col-sm-10" ng-if="vendidos == 0">
+        <h1>No ha habido ventas.</h1>
+    </div>
+    <div class="col-xs-offset-10  col-xs-2 col-sm-2 col-sm-offset-10 col-md-2 col-lg-2 col-md-offset-10 col-lg-offset-10" style="position: absolute; left: 0%;">
+        {% for field in form_user %}
+        {{ field.label_tag }}{{ field }}
+    {% endfor %}
+    {% for field in cafeteria_form %}
+    {{ field.label_tag }}{{ field }}
+    {% endfor %}
+    <br>
+    <button class="btn btn-primary" ng-click = "ventas_iniciales()">Todas las ventas</button>
+                <div class="alert-success"> <h5>Ventas: $[[ganancias]] <div>Productos vendidos:<span ng-if="verifica ==0"> [[vendidos]]</span><span ng-if="verifica ==1 ">[[valida]]</span></div></h5></div>
+
+    </div>
+    </div>
+{% endblock %}
