@@ -1,6 +1,6 @@
 bcrypt
 dj-database-url==0.4.1
-Django==1.8
+Django==2.2.24
 django-registration-redux==1.2
 gunicorn==19.4.5
 Pillow
